@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Viewography</title>
   <!-- View Buddies invites (viewography.app/i/<token>#<code>) land here when the app isn't
-       installed. The page and its preview stay generic: the site never sees who sent the invite. -->
+       installed. The page and its preview stay generic: the site never sees who sent the invite.
+       Shared titles (viewography.app/t/movie/<id>, /t/show/<id>) land here the same way. -->
   <meta property="og:title" content="You've been invited to View Buddies">
   <meta property="og:description" content="Accept in Viewography.">
   <meta property="og:site_name" content="Viewography">
@@ -36,15 +37,35 @@
     <a class="invite-button" href="https://testflight.apple.com/join/XECSeUTK">Get Viewography</a>
     <p class="invite-note">Viewography is in beta on TestFlight. Once it's installed, tap the invite link again to accept.</p>
   </main>
+  <main class="invite missing" id="title">
+    <div class="invite-card">
+      <div class="brand" aria-label="Viewography">
+        <span class="brand-view">VI</span><span class="brand-e" aria-hidden="true"><i></i><i></i><i></i></span><span class="brand-view">W</span>
+      </div>
+      <h1 class="invite-title" id="title-heading">THIS TITLE</h1>
+      <p id="title-text">Someone shared a title with you.</p>
+      <p class="muted">View it in Viewography.</p>
+    </div>
+    <a class="invite-button" href="https://testflight.apple.com/join/XECSeUTK">Get Viewography</a>
+    <p class="invite-note">Viewography is in beta on TestFlight. Once it's installed, tap the link again.</p>
+  </main>
   <main class="page missing" id="missing">
     <h1>Not found</h1>
     <p>That page isn't here. <a href="/">Go to Viewography</a>.</p>
   </main>
   <script>
-    // Anything that isn't an invite gets an ordinary not-found page.
+    // A shared title (/t/movie/<id> or /t/show/<id>) gets its own page; anything else that isn't an
+    // invite gets an ordinary not-found page.
+    var shared = /^\/t\/(movie|show)\/[0-9]{1,9}\/?$/.exec(location.pathname);
     if (!/^\/i\/[A-Za-z0-9_-]+\/?$/.test(location.pathname)) {
       document.getElementById('invite').style.display = 'none';
-      document.getElementById('missing').style.display = 'block';
+      if (shared) {
+        document.getElementById('title').style.display = 'block';
+        document.getElementById('title-heading').textContent = shared[1] === 'movie' ? 'THIS MOVIE' : 'THIS SHOW';
+        document.getElementById('title-text').textContent = 'Someone shared a ' + shared[1] + ' with you.';
+      } else {
+        document.getElementById('missing').style.display = 'block';
+      }
     }
   </script>
 </body>
