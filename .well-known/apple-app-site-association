@@ -7,7 +7,8 @@
           "B3LKR53Q28.com.markcameron.Viewography.dev"
         ],
         "components": [
-          { "/": "/i/*", "comment": "View Buddies invites open the app to Accept" }
+          { "/": "/i/*", "comment": "View Buddies invites open the app to Accept" },
+          { "/": "/t/*", "comment": "Shared titles open the title page" }
         ]
       }
     ]
