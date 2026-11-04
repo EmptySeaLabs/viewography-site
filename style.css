@@ -8,3 +8,5 @@
 .previous-builds{margin-top:40px;border:1px solid var(--line);border-radius:16px;background:#0d1016}.previous-builds summary{cursor:pointer;padding:18px 24px;min-height:44px;font-weight:650;font-size:1.1rem;list-style-position:inside}.previous-builds summary:focus-visible{outline:3px solid var(--orange);outline-offset:4px;border-radius:16px}.previous-builds .release{border:0;border-top:1px solid var(--line);border-radius:0 0 16px 16px;background:transparent}
 .release-head{flex-wrap:wrap}
 .beta-device{border:0;padding:0;margin:0 0 4px;display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center}.beta-device legend{padding:0;margin-bottom:8px;font-size:1rem}.beta-device label{display:inline-flex;align-items:center;gap:8px;min-height:44px;cursor:pointer}#beta-form .beta-device input{width:20px;height:20px;margin:0;accent-color:var(--blue)}
+
+.store-row{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:18px}.store-row .coming{margin:0}.app-store-badge{display:inline-block;border:0;line-height:0}.app-store-badge:hover{opacity:.85}.app-store-badge img{display:block;width:164px;height:auto}
