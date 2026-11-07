@@ -10,3 +10,14 @@
 @media(max-width:360px){.wrap{width:calc(100% - 32px)}.wordmark{font-size:21px}.brand-mark{width:20px;height:25px}.brand-mark i{height:6px}.hero h1{font-size:45px}.hero .eyebrow{font-size:9px;letter-spacing:.07em}.hero-art{padding:15px}.planner-preview{padding:20px 15px}.preview-heading{gap:10px}.preview-heading h2{font-size:29px}.preview-icon{width:32px;height:32px;font-size:22px}.mini-label{font-size:7px}.service-symbol{display:none}.plan-row strong{font-size:11px}.status{padding:5px 7px}.art-topline,.art-caption{font-size:7px}.section-intro h2,.app-heading h2,.privacy-strip h2{font-size:35px}.final-cta h2{font-size:43px}.final-cta{padding:28px 21px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
 
+
+/* Streaming Planner demo */
+.planner-demo{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);align-items:center;gap:48px;padding:48px;background:var(--navy);color:var(--white);border-radius:24px;scroll-margin-top:100px}
+.demo-copy{max-width:540px}
+.planner-demo .eyebrow{color:#ffad79}
+.demo-copy h3{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.04em;margin:16px 0 24px}
+.demo-copy p{line-height:1.65}
+.demo-copy .demo-note{font-size:13px;color:#c5d0d3}
+.planner-demo .text-link{color:var(--white)}
+.planner-demo video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;background:#10191e;border:1px solid #41545c;border-radius:16px}
+@media(max-width:760px){.planner-demo{grid-template-columns:1fr;padding:28px 22px;gap:28px}.planner-demo video{max-width:320px;justify-self:center}}
