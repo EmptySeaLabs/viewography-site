@@ -1,25 +1,15 @@
-# Updating What's New for a new TestFlight build
+# Updating the public release
 
-Do this when a new build reaches testers, not before.
+1. Confirm the version and build actually available on the App Store before updating the current-release card.
+2. Update the current card and release notes in whats-new.html. Public releases use the App Store download link; beta invitations belong in a separate, clearly labeled testing flow.
+3. Move previous releases into Previous builds, preserving historical beta labels.
+4. Copy whats-new.html to whats-new/index.html so both routes match.
+5. Keep each route’s canonical URL consistent with sitemap.xml.
+6. Check desktop and phone layouts, keyboard navigation, and the exact App Store destination before merging.
+7. When pricing or compatibility changes, update the homepage, FAQ, structured data, social image and App Store copy together.
 
-1. **Current build card:** set the heading to the new `S{n}E{n} · Title` and the small line to `Version X.Y (build)`.
-2. **Release notes:** turn "Coming in the next beta" into a new release entry at the top of "Release notes", tagged Apple iOS beta. Leave "Coming in the next beta" empty or remove it until there's something in testing.
-3. **Previous builds:** move the build that was current into the collapsible "Previous builds" section at the bottom of the page (a `<details>` element, closed by default, newest first). Create the section the first time (S2E5 release, moving S2E4).
-4. Copy `whats-new.html` to `whats-new/index.html` so both routes match.
-5. Check the page at phone width, then push to main.
+## Marketing assets
 
-# TestFlight "What to Test" format
+APP_STORE_COPY.md contains proposed listing copy and the screenshot brief. It is a review draft, not a record of changes published in App Store Connect.
 
-Plain text (TestFlight doesn't render markdown). Always in this order:
-
-```
-Season X Episode Y: Episode Title
-
-What's new in this build
-• ...
-
-What to test
-• ...
-```
-
-Use the same wording as the What's New release notes.
+The homepage’s released Planner image currently uses the image URL observed on the public App Store page. Consider replacing it with a repository-hosted original export when available.
