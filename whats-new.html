@@ -4,21 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Features &amp; Release Notes — Viewography</title>
-  <meta name="description" content="What Viewography does, the current beta version, and what changed in each release.">
+  <meta name="description" content="Explore Viewography for iPhone: streaming planning, movie and TV tracking, discovery, shared watchlists, and release notes.">
   <link rel="stylesheet" href="/style.css">
+  <link rel="canonical" href="https://viewography.app/whats-new/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/interior.css">
 </head>
 <body>
   <main class="page notes-page">
     <div class="eyebrow"><a href="/">VIEWOGRAPHY</a></div>
     <h1>What's new.</h1>
-    <p class="intro">Everything Viewography does today, the version testers have now, and what changed in each release.</p>
+    <p class="intro">What Viewography does today, and what changed in each release. Now available on the App Store for iPhone.</p>
 
     <section class="current-build" aria-labelledby="current-heading">
-      <p class="beta-label">Current Apple iOS beta</p>
+      <p class="beta-label">Now on the App Store</p>
       <h2 id="current-heading">S4E1 · Ready Player One</h2>
       <p class="build-number">Version 4.0 (36)</p>
-      <p>Available through TestFlight. Requires an iPhone running iOS 27.</p>
-      <button class="beta-button" id="beta-open" type="button">Request beta access</button>
+      <p>Available on the App Store. Requires an iPhone running iOS 27 or later.</p>
+      <a class="app-store-button" href="https://apps.apple.com/app/id6814292849">Download on the App Store</a>
     </section>
 
     <section aria-labelledby="features-heading">
@@ -38,7 +41,7 @@
         </article>
         <article class="feature">
           <h3>Streaming Plan</h3>
-          <p>Its own tab. Add what each service costs and when it renews, and see which to keep and which to pause. Turn off Auto-renew on a service you've canceled, and the Plan shows what to finish before it ends.</p>
+          <p>Your viewing progress, watchlist, release timing, subscriptions, costs and renewal dates come together in one plan. See when to keep, pause or resume services, including saving shows for later. You make subscription changes with the provider; mark a canceled service as no longer auto-renewing to see what to finish before access ends.</p>
         </article>
         <article class="feature">
           <h3>Your services, exactly</h3>
@@ -74,7 +77,7 @@
         <div class="release-head">
           <h3>S4E1 · Ready Player One</h3>
           <span class="build-number">4.0 (36)</span>
-          <span class="release-tag">Apple iOS beta</span>
+          <span class="release-tag">iPhone release</span>
         </div>
         <ul class="notes-list">
           <li><strong>Home comes first.</strong> What's up next, what's leaving and what's new, on one screen.</li>
@@ -238,33 +241,11 @@
 
     <p class="muted notes-footer">Questions or ideas? Email <a href="mailto:support@viewography.app">support@viewography.app</a>.</p>
   </main>
-<dialog id="beta-panel" aria-labelledby="beta-panel-title" aria-describedby="beta-description">
-  <button class="beta-close" type="button" aria-label="Close beta request">×</button>
-  <p class="beta-label">Apple iOS beta</p>
-  <h2 id="beta-panel-title">Request beta access</h2>
-  <p id="beta-description">Try Viewography on your iPhone and share feedback and ideas to help make it better.</p>
-  <form id="beta-form">
-    <label for="beta-name">Name</label>
-    <input id="beta-name" name="name" autocomplete="name" maxlength="120" required>
-    <fieldset class="beta-device">
-      <legend>Which phone do you use?</legend>
-      <label><input type="radio" name="device" value="iPhone" checked> iPhone</label>
-      <label><input type="radio" name="device" value="Android"> Android</label>
-    </fieldset>
-    <p id="android-note" class="beta-note" hidden>Viewography is iPhone only for now. Join the Android waitlist and we'll email you when an Android beta is ready.</p>
-    <label for="beta-email" id="beta-email-label">Apple ID email address</label>
-    <input id="beta-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="beta-email-help" required>
-    <p id="beta-email-help" class="beta-note">Enter the email address you use for your Apple ID so we can invite you to the Apple iOS beta through TestFlight.</p>
-    <div class="beta-trap" aria-hidden="true"><label for="beta-website">Website</label><input id="beta-website" name="_gotcha" tabindex="-1" autocomplete="off"></div>
-    <p class="beta-note">Your request is sent through FormSubmit to support@viewography.app. We'll use your name and email only to contact you about the Viewography beta.</p>
-    <button class="beta-button" type="submit">Submit request</button>
-    <p id="beta-status" role="status" aria-live="polite"></p>
-  </form>
-</dialog>
-  <footer>
+<footer>
     <span>© 2026 Viewography</span>
     <nav><a href="/whats-new" aria-current="page">What's New</a><a href="/privacy">Privacy Policy</a><a href="/support.html">Support</a></nav>
   </footer>
-<script src="/beta.js" defer></script>
+
 </body>
 </html>
+
