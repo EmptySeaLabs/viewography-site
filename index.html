@@ -87,16 +87,16 @@
     <div class="rule"></div>
 
     <p class="coming">
-      Coming to the Apple iOS App Store.
+      Viewography has launched for iPhone.
     </p>
 
-    <section class="beta-invitation" aria-labelledby="beta-heading">
+    <section class="beta-invitation" aria-labelledby="launch-heading">
       <div>
-        <p class="beta-label">Apple iOS beta</p>
-        <h2 id="beta-heading">Help shape Viewography.</h2>
-        <p>We're looking for beta testers who will share feedback and ideas to make the app better.</p>
+        <p class="beta-label">Now released</p>
+        <h2 id="launch-heading">Get Viewography for iPhone.</h2>
+        <p>The App Store listing may take a little time to appear in your region. If it isn't available yet, please check back soon.</p>
       </div>
-      <button class="beta-button" id="beta-open" type="button">Request beta access</button>
+      <a class="app-store-button" href="https://apps.apple.com/app/id6814292849">Download on the App Store</a>
     </section>
 
     <section class="app-stage" aria-label="Viewography app previews">
@@ -135,29 +135,5 @@
     </nav>
   </footer>
 
-<dialog id="beta-panel" aria-labelledby="beta-panel-title" aria-describedby="beta-description">
-  <button class="beta-close" type="button" aria-label="Close beta request">×</button>
-  <p class="beta-label">Apple iOS beta</p>
-  <h2 id="beta-panel-title">Request beta access</h2>
-  <p id="beta-description">Try Viewography on your iPhone and share feedback and ideas to help make it better.</p>
-  <form id="beta-form">
-    <label for="beta-name">Name</label>
-    <input id="beta-name" name="name" autocomplete="name" maxlength="120" required>
-    <fieldset class="beta-device">
-      <legend>Which phone do you use?</legend>
-      <label><input type="radio" name="device" value="iPhone" checked> iPhone</label>
-      <label><input type="radio" name="device" value="Android"> Android</label>
-    </fieldset>
-    <p id="android-note" class="beta-note" hidden>Viewography is iPhone only for now. Join the Android waitlist and we'll email you when an Android beta is ready.</p>
-    <label for="beta-email" id="beta-email-label">Apple ID email address</label>
-    <input id="beta-email" name="email" type="email" autocomplete="email" maxlength="254" aria-describedby="beta-email-help" required>
-    <p id="beta-email-help" class="beta-note">Enter the email address you use for your Apple ID so we can invite you to the Apple iOS beta through TestFlight.</p>
-    <div class="beta-trap" aria-hidden="true"><label for="beta-website">Website</label><input id="beta-website" name="_gotcha" tabindex="-1" autocomplete="off"></div>
-    <p class="beta-note">Your request is sent through FormSubmit to support@viewography.app. We'll use your name and email only to contact you about the Viewography beta.</p>
-    <button class="beta-button" type="submit">Submit request</button>
-    <p id="beta-status" role="status" aria-live="polite"></p>
-  </form>
-</dialog>
-<script src="/beta.js" defer></script>
 </body>
 </html>
