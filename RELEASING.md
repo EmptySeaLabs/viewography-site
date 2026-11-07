@@ -12,4 +12,4 @@
 
 APP_STORE_COPY.md contains proposed listing copy and the screenshot brief. It is a review draft, not a record of changes published in App Store Connect.
 
-The homepage’s released Planner image currently uses the image URL observed on the public App Store page. Consider replacing it with a repository-hosted original export when available.
+The homepage’s Planner image is bundled at assets/streaming-plan.webp, recovered from the released App Store page. It is a 156 × 340 thumbnail; replace it with a full-resolution original export when available. The standalone preview embeds the image so it works without external image requests.
