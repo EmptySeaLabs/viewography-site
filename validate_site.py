@@ -5,7 +5,7 @@ import re
 import xml.etree.ElementTree as ET
 
 root = Path(__file__).parent
-store_url = "https://apps.apple.com/app/id6814292849"
+store_url = "https://apps.apple.com/app/apple-store/id6814292849?pt=129488749&ct=Site&mt=8"
 
 class Page(HTMLParser):
     def __init__(self, text):
@@ -46,7 +46,7 @@ for filename in ["index.html", "whats-new.html", "whats-new/index.html", "privac
 
 home = (root / "index.html").read_text()
 json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', home, re.S).group(1))
-assert home.count('href="' + store_url + '"') >= 3
+assert home.count('href="' + store_url.replace("&", "&amp;") + '"') >= 3
 assert "No accounts. No ads. No tracking." in home
 assert "No subscriptions. No in-app purchases." in home
 for filename in ["whats-new.html", "whats-new/index.html"]:
