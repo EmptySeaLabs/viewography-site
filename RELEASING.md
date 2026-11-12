@@ -18,4 +18,6 @@ The homepage app tour uses the nine uploaded App Store panels, exported at 660 Ã
 
 site.js adds the homepage interactions (the month buttons on the hero plan, the app tour, the Set a budget panel, section fade-ins). The page reads in full without it. Run `python3 validate_site.py` before merging.
 
-Pages load launch.css, interior.css and site.js with a version number (`?v=3`). Whenever one of those files changes, raise the number by one on every page (index.html and the three interior pages plus their copies), so phones don't pair a new page with an old cached stylesheet. validate_site.py checks the numbers match.
+Pages load launch.css, interior.css, site.js and beta.js with a version number (`?v=4`). Whenever one of those files changes, raise the number by one on every page (index.html and the four interior pages plus their copies), so phones don't pair a new page with an old cached stylesheet. validate_site.py checks the numbers match.
+
+Beta requests: the homepage strip and the footer link to /beta/ (beta.html, copied to beta/index.html). The form posts name, email for TestFlight and iPhone model through FormSubmit to support@viewography.app. TestFlight notes and the in-app TestFlight sheet point here, so keep the address.

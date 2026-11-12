@@ -16,7 +16,7 @@ class Page(HTMLParser):
         self.tags.append((tag, dict(attrs)))
 
 errors = []
-for filename in ["index.html", "whats-new.html", "whats-new/index.html", "privacy.html", "privacy/index.html", "support.html", "support/index.html"]:
+for filename in ["index.html", "whats-new.html", "whats-new/index.html", "privacy.html", "privacy/index.html", "support.html", "support/index.html", "beta.html", "beta/index.html"]:
     text = (root / filename).read_text()
     page = Page(text)
     ids = [attrs["id"] for _, attrs in page.tags if "id" in attrs]
@@ -57,17 +57,19 @@ assert (root / "whats-new.html").read_bytes() == (root / "whats-new/index.html")
 for filename in ["launch.css", "interior.css"]:
     css = (root / filename).read_text()
     assert css.count("{") == css.count("}")
-for filename in ["privacy", "support"]:
+for filename in ["privacy", "support", "beta"]:
     assert (root / (filename + ".html")).read_bytes() == (root / filename / "index.html").read_bytes()
 version = re.search(r'href="/launch\.css\?v=(\d+)"', home).group(1)
 assert 'src="/site.js?v=' + version + '" defer' in home and (root / "site.js").exists()
-for filename in ["whats-new.html", "privacy.html", "support.html"]:
+for filename in ["whats-new.html", "privacy.html", "support.html", "beta.html"]:
     assert 'href="/interior.css?v=' + version + '"' in (root / filename).read_text()
 assert home.count('class="budget-row"') == 5 and 'id="budget-range"' in home
 assert home.count('class="tour-slide"') == home.count('class="tour-link"') == 9
+beta = (root / "beta.html").read_text()
+assert 'id="beta-form"' in beta and 'src="/beta.js?v=' + version + '"' in beta and 'href="/beta/"' in home
 ET.parse(root / "sitemap.xml")
 ET.parse(root / "assets/favicon.svg")
 if errors:
     raise SystemExit("\n".join(errors))
-print("PASS: seven HTML routes, internal links and anchors, unique IDs, headings, canonicals, exact App Store URLs, release-route parity, JSON-LD, XML, CSS brace balance and removed beta controls.")
+print("PASS: nine HTML routes, internal links and anchors, unique IDs, headings, canonicals, exact App Store URLs, release-route parity, JSON-LD, XML, CSS brace balance and removed beta controls.")
 print("LIMIT: static checks only; no rendered layout, screen-reader, external screenshot availability or Core Web Vitals verification.")

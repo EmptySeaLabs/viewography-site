@@ -128,3 +128,11 @@ summary:hover{color:var(--orange)}
 .tour-slide figcaption span:last-child{display:block;font-size:13px;line-height:1.6;color:#bfccd1;margin-top:7px}
 }
 h1,h2{word-spacing:.08em}
+.beta-strip{display:flex;justify-content:space-between;align-items:center;gap:30px 40px;flex-wrap:wrap;padding-block:55px}
+.beta-strip h2{font-size:clamp(28px,3vw,38px);line-height:1.1;margin-top:12px}
+.beta-strip p:not(.eyebrow){font-size:15px;color:var(--muted);margin-top:12px}
+.beta-strip .eyebrow{color:var(--orange)}
+.button-outline{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}.button-outline:hover{background:var(--ink);color:var(--white)}
+.button-outline:hover span{transform:translateX(4px)}
+.faq-section{padding-bottom:80px}
+@media(max-width:760px){.beta-strip{padding-block:40px}.faq-section{padding-bottom:50px}}
