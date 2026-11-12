@@ -70,6 +70,30 @@
       <div class="numbered-step"><span>03</span><div><h3>Know what to keep. And what can wait.</h3><p>Get recommendations for when to keep, pause or resume services. Save shows for later and return when there’s more you want to watch.</p></div></div>
       <p class="control-note">You stay in control. Viewography recommends a plan; you make subscription changes with your streaming provider.</p>
     </div>
+      <div class="budget-demo" data-budget aria-labelledby="budget-title">
+        <div class="budget-copy">
+          <p class="eyebrow">TRY IT</p>
+          <h3 id="budget-title">Set a budget.<br>See the plan.</h3>
+          <p>Tell Viewography what you want to spend each month. It keeps the services you’re watching most and says what waits.</p>
+          <div class="budget-control" hidden>
+            <label for="budget-range">Monthly budget <output id="budget-out" for="budget-range">$45 a month</output></label>
+            <input id="budget-range" type="range" min="20" max="70" step="1" value="45">
+          </div>
+          <p class="budget-line" aria-live="polite">To stay under $45, Paper Lanterns waits until next month.</p>
+        </div>
+        <div class="budget-plan">
+          <p class="mini-label">PLAN OF ATTACK · THIS MONTH</p>
+          <ul class="budget-rows">
+          <li class="budget-row"><div><strong>Northlight</strong><p>Tidewater airs weekly all month.</p></div><span class="budget-price">$18</span><span class="status keep">Keep</span></li>
+          <li class="budget-row"><div><strong>Marquee+</strong><p>4 episodes of The Long Shift left to finish.</p></div><span class="budget-price">$16</span><span class="status keep">Keep</span></li>
+          <li class="budget-row"><div><strong>Harbor</strong><p>Paper Lanterns waits until next month.</p></div><span class="budget-price">$12</span><span class="status pause">Wait</span></li>
+          <li class="budget-row"><div><strong>Reelhouse</strong><p>Two movies on your Watchlist.</p></div><span class="budget-price">$10</span><span class="status keep">Keep</span></li>
+          <li class="budget-row"><div><strong>Kite TV</strong><p>Nothing on your Watchlist until March.</p></div><span class="budget-price">$8</span><span class="status pause">Pause</span></li>
+          </ul>
+          <dl class="budget-totals"><div><dt>This month</dt><dd id="budget-spend">$44</dd></div><div><dt>You were paying</dt><dd>$64</dd></div><div><dt>Saved</dt><dd id="budget-saved" class="budget-saved">$20</dd></div></dl>
+          <p class="example-label">Example services, titles and prices.</p>
+        </div>
+      </div>
           <div id="planner-demo" class="planner-demo" aria-labelledby="demo-title">
         <div class="demo-copy">
           <p class="eyebrow">SEE IT IN ACTION</p>
@@ -87,16 +111,6 @@
       <aside class="scenario" aria-labelledby="scenario-title">
       <div><p class="eyebrow">THE IDEA IN REAL LIFE</p><h3 id="scenario-title">Don’t pay for the gap<br>between great shows.</h3></div>
       <ol><li><strong>Finish the season.</strong><span>Catch up before your current service renews.</span></li><li><strong>Let the next show wait.</strong><span>Save it while you watch something on another service.</span></li><li><strong>Come back for both.</strong><span>Resume when another anticipated release makes the month worthwhile.</span></li></ol>
-      <div class="gap-math" data-gap hidden>
-        <p class="eyebrow">TRY THE MATH</p>
-        <div class="gap-controls">
-          <label for="gap-price">Monthly price of one service <output id="gap-price-out" for="gap-price">$16</output></label>
-          <input id="gap-price" type="range" min="5" max="30" step="1" value="16">
-          <label for="gap-months">Months a year with nothing to watch on it <output id="gap-months-out" for="gap-months">4</output></label>
-          <input id="gap-months" type="range" min="1" max="9" step="1" value="4">
-        </div>
-        <p class="gap-result" aria-live="polite"><strong id="gap-total">$64</strong><span>a year you’d keep by pausing through those months.</span></p>
-      </div>
       <p>An example of the strategy, not a promise of a particular recommendation or savings amount.</p>
     </aside>
   </section>

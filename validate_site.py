@@ -60,6 +60,7 @@ for filename in ["launch.css", "interior.css"]:
 for filename in ["privacy", "support"]:
     assert (root / (filename + ".html")).read_bytes() == (root / filename / "index.html").read_bytes()
 assert 'src="/site.js" defer' in home and (root / "site.js").exists()
+assert home.count('class="budget-row"') == 5 and 'id="budget-range"' in home
 assert home.count('class="tour-slide"') == home.count('class="tour-link"') == 9
 ET.parse(root / "sitemap.xml")
 ET.parse(root / "assets/favicon.svg")

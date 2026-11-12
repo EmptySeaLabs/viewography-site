@@ -16,4 +16,4 @@ The homepage’s Planner image is bundled at assets/streaming-plan.png from the 
 
 The homepage app tour uses the nine uploaded App Store panels, exported at 660 × 1434 as JPEG into assets/tour/. When the App Store screenshots change, export the new set with the same file names and update the tour text and alt text in index.html.
 
-site.js adds the homepage interactions (the month buttons on the hero plan, the app tour, the Try the math sliders, section fade-ins). The page reads in full without it. Run `python3 validate_site.py` before merging.
+site.js adds the homepage interactions (the month buttons on the hero plan, the app tour, the Set a budget panel, section fade-ins). The page reads in full without it. Run `python3 validate_site.py` before merging.
