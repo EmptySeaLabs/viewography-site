@@ -34,7 +34,7 @@ for filename in ["index.html", "whats-new.html", "whats-new/index.html", "privac
             if url.startswith("#") and url[1:] not in ids:
                 errors.append(filename + ": broken anchor " + url)
             if url.startswith("/") and not url.startswith("//"):
-                path = url.split("#")[0]
+                path = url.split("#")[0].split("?")[0]
                 target = root / path.lstrip("/")
                 if path == "/":
                     target = root / "index.html"
@@ -59,7 +59,11 @@ for filename in ["launch.css", "interior.css"]:
     assert css.count("{") == css.count("}")
 for filename in ["privacy", "support"]:
     assert (root / (filename + ".html")).read_bytes() == (root / filename / "index.html").read_bytes()
-assert 'src="/site.js" defer' in home and (root / "site.js").exists()
+version = re.search(r'href="/launch\.css\?v=(\d+)"', home).group(1)
+assert 'src="/site.js?v=' + version + '" defer' in home and (root / "site.js").exists()
+for filename in ["whats-new.html", "privacy.html", "support.html"]:
+    assert 'href="/interior.css?v=' + version + '"' in (root / filename).read_text()
+assert home.count('class="budget-row"') == 5 and 'id="budget-range"' in home
 assert home.count('class="tour-slide"') == home.count('class="tour-link"') == 9
 ET.parse(root / "sitemap.xml")
 ET.parse(root / "assets/favicon.svg")

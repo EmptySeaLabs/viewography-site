@@ -17,6 +17,7 @@
 .planner-demo .eyebrow{color:#ffad79}
 .demo-copy h3{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.04em;margin:16px 0 24px}
 .demo-copy p{line-height:1.65}
+.demo-copy p+p{margin-top:14px}
 .demo-copy .demo-note{font-size:13px;color:#c5d0d3}
 .planner-demo .text-link{color:var(--white)}
 .planner-demo video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;background:#10191e;border:1px solid #41545c;border-radius:16px}
@@ -42,7 +43,7 @@
 .js .reveal.in{opacity:1;transform:none}
 
 .plan-months{display:flex;flex-wrap:wrap;gap:6px;margin:-6px 0 18px}
-.plan-months[hidden],.plan-total[hidden],.gap-math[hidden],.tour-controls[hidden]{display:none}
+.plan-months[hidden],.plan-total[hidden],.budget-control[hidden],.tour-controls[hidden]{display:none}
 .plan-months button{font:inherit;font-size:11px;font-weight:650;min-height:34px;padding:7px 13px;border-radius:20px;border:1px solid #47606c;background:transparent;color:#c1d0d6;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
 .plan-months button:hover{border-color:#f4be87;color:#fffdf7}
 .plan-months button[aria-pressed="true"]{background:#f4be87;border-color:#f4be87;color:var(--navy)}
@@ -52,16 +53,31 @@
 .plan-total{font-size:11px;color:#c1d0d6;border-top:1px solid #39505b;padding-top:15px;line-height:1.5}
 .plan-total strong{color:#fffdf7}
 
-.gap-math{grid-column:1/-1;display:grid;grid-template-columns:1.4fr 1fr;gap:20px 48px;align-items:center;background:var(--white);border:1px solid #e0dccc;border-radius:14px;padding:28px 30px}
-.gap-math .eyebrow{grid-column:1/-1;color:var(--orange)}
-.gap-controls{display:grid;gap:8px}
-.gap-controls label{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:14px;font-weight:650}
-.gap-controls label+input{margin-bottom:10px}
-.gap-controls output{color:var(--orange);font-size:16px;font-variant-numeric:tabular-nums}
-.gap-controls input{width:100%;height:28px;accent-color:var(--orange);cursor:pointer}
-.gap-controls input:focus-visible{outline:3px solid #167ec2;outline-offset:4px;border-radius:6px}
-.gap-result strong{display:block;font-size:clamp(48px,6vw,72px);line-height:1;letter-spacing:-.05em;font-weight:750;font-variant-numeric:tabular-nums}
-.gap-result span{display:block;font-size:14px;line-height:1.5;color:var(--muted);margin-top:10px;max-width:240px}
+.budget-demo{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px 64px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:24px;padding:48px}
+.budget-demo .eyebrow{color:var(--orange)}
+.budget-copy h3{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.04em;margin:16px 0 20px}
+.budget-copy>p:not(.eyebrow):not(.budget-line){font-size:15px;color:var(--muted);max-width:440px}
+.budget-control{margin-top:30px;max-width:440px}
+.budget-control label{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:14px;font-weight:650}
+.budget-control output{font-size:24px;font-weight:750;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.budget-control input{display:block;width:100%;height:32px;margin-top:8px;accent-color:var(--orange);cursor:pointer}
+.budget-control input:focus-visible{outline:3px solid #167ec2;outline-offset:4px;border-radius:6px}
+.budget-line{font-size:15px;font-weight:650;line-height:1.5;margin-top:18px;max-width:440px;min-height:3em}
+.budget-plan{background:var(--navy);color:var(--white);border:1px solid #31434b;border-radius:16px;padding:26px 24px;box-shadow:0 20px 40px #68351a1f}
+.budget-plan .mini-label{margin-bottom:6px}
+.budget-rows{list-style:none;margin:0;padding:0}
+.budget-row{display:flex;align-items:center;gap:14px;padding-block:15px;border-top:1px solid #39505b;transition:opacity .3s ease}
+.budget-row>div{flex:1;min-width:0}
+.budget-row strong{font-size:14px;font-weight:650}
+.budget-row p{font-size:12px;line-height:1.5;color:#bccbd0;margin-top:3px}
+.budget-price{font-size:13px;font-weight:650;font-variant-numeric:tabular-nums;color:#fffdf7}
+.budget-row.is-off{opacity:.62}
+.budget-row.is-off .budget-price{text-decoration:line-through;color:#bccbd0}
+.budget-row .status{transition:color .2s,border-color .2s}
+.budget-totals{display:grid;grid-template-columns:repeat(3,1fr);align-items:end;gap:12px;margin:0;padding-top:18px;border-top:1px solid #39505b}
+.budget-totals dt{font-size:8px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:#b5c8ce;line-height:1.7}
+.budget-totals dd{margin:4px 0 0;font-size:24px;font-weight:750;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.budget-saved{color:#f4be87}
 
 .tour{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:40px 100px;align-items:start;margin-top:60px}
 .tour-list{list-style:none;margin:0;padding:0;border-bottom:1px solid #3b505b}
@@ -100,7 +116,8 @@ summary:hover{color:var(--orange)}
 }
 @media(max-width:1100px){.tour{gap:40px 55px}}
 @media(max-width:760px){
-.gap-math{grid-template-columns:1fr;padding:22px 20px;gap:18px}
+.budget-demo{grid-template-columns:1fr;padding:28px 22px;gap:28px}
+.budget-plan{padding:20px 18px}
 .tour{grid-template-columns:1fr;margin-top:35px}
 .tour-list{display:none}
 .tour-strip{gap:14px;border-radius:0;margin-inline:-20px;padding-inline:20px;scroll-padding-inline:20px}
@@ -110,3 +127,4 @@ summary:hover{color:var(--orange)}
 .tour-slide figcaption strong{display:block;font-size:19px;letter-spacing:-.025em;line-height:1.25;margin-top:6px}
 .tour-slide figcaption span:last-child{display:block;font-size:13px;line-height:1.6;color:#bfccd1;margin-top:7px}
 }
+h1,h2{word-spacing:.08em}

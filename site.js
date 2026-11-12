@@ -26,7 +26,7 @@
   }
 
   // Sections ease in as they arrive.
-  const revealTargets = $$('.promise-strip span, .section-intro, .numbered-step, .control-note, .planner-demo, .scenario, .app-heading, .tour, .privacy-strip > *, .faq-list details, .final-cta');
+  const revealTargets = $$('.promise-strip span, .section-intro, .numbered-step, .control-note, .budget-demo, .planner-demo, .scenario, .app-heading, .tour, .privacy-strip > *, .faq-list details, .final-cta');
   if (canObserve && !reduced) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -103,20 +103,48 @@
     }
   }
 
-  // The math: one service, paused through its quiet months.
-  const gap = $('[data-gap]');
-  if (gap) {
-    const price = $('#gap-price', gap);
-    const quiet = $('#gap-months', gap);
+  // Set a budget: keep what you're watching most, in order, and say what waits.
+  const budget = $('[data-budget]');
+  if (budget) {
+    // Most to watch first. The last service has nothing to watch, so it pauses at any budget.
+    const services = [
+      { price: 18, keep: 'Tidewater airs weekly all month.', wait: 'Tidewater waits until next month.', waits: 'Tidewater' },
+      { price: 16, keep: '4 episodes of The Long Shift left to finish.', wait: 'The Long Shift waits until next month.', waits: 'The Long Shift' },
+      { price: 12, keep: 'Paper Lanterns is all out. Watch it this month.', wait: 'Paper Lanterns waits until next month.', waits: 'Paper Lanterns' },
+      { price: 10, keep: 'Two movies on your Watchlist.', wait: 'Your two movies wait until next month.', waits: 'your two movies' },
+      { price: 8 }
+    ];
+    const paying = services.reduce((sum, service) => sum + service.price, 0);
+    const range = $('#budget-range', budget);
+    const rows = $$('.budget-row', budget);
+    const list = (names) => (names.length < 2 ? names.join('') : names.slice(0, -1).join(', ') + ' and ' + names[names.length - 1]);
     const update = () => {
-      $('#gap-price-out', gap).textContent = '$' + price.value;
-      $('#gap-months-out', gap).textContent = quiet.value;
-      $('#gap-total', gap).textContent = '$' + price.value * quiet.value;
+      const limit = Number(range.value);
+      let spend = 0;
+      const waiting = [];
+      services.forEach((service, i) => {
+        if (!service.keep) return;
+        const kept = spend + service.price <= limit;
+        if (kept) spend += service.price;
+        else waiting.push(service.waits);
+        const status = $('.status', rows[i]);
+        status.className = 'status ' + (kept ? 'keep' : 'pause');
+        status.textContent = kept ? 'Keep' : 'Wait';
+        $('p', rows[i]).textContent = kept ? service.keep : service.wait;
+        rows[i].classList.toggle('is-off', !kept);
+      });
+      $('#budget-out', budget).textContent = '$' + limit + ' a month';
+      $('#budget-spend', budget).textContent = '$' + spend;
+      $('#budget-saved', budget).textContent = '$' + (paying - spend);
+      const verb = waiting.length === 1 && waiting[0] !== 'your two movies' ? ' waits' : ' wait';
+      $('.budget-line', budget).textContent = waiting.length
+        ? 'To stay under $' + limit + ', ' + list(waiting) + verb + ' until next month.'
+        : 'Your plan fits: $' + spend + ' a month.';
     };
-    price.addEventListener('input', update);
-    quiet.addEventListener('input', update);
+    rows[rows.length - 1].classList.add('is-off');
+    range.addEventListener('input', update);
     update();
-    gap.hidden = false;
+    $('.budget-control', budget).hidden = false;
   }
 
   // App tour: the list drives the screens, and swiping the screens drives the list.
