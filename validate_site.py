@@ -34,11 +34,12 @@ for filename in ["index.html", "whats-new.html", "whats-new/index.html", "privac
             if url.startswith("#") and url[1:] not in ids:
                 errors.append(filename + ": broken anchor " + url)
             if url.startswith("/") and not url.startswith("//"):
-                target = root / url.lstrip("/")
-                if url.endswith("/"):
-                    target = target / "index.html"
-                elif url == "/":
+                path = url.split("#")[0]
+                target = root / path.lstrip("/")
+                if path == "/":
                     target = root / "index.html"
+                elif path.endswith("/"):
+                    target = target / "index.html"
                 if not target.exists():
                     errors.append(filename + ": missing local target " + url)
             if "apps.apple.com" in url and url != store_url:
@@ -56,6 +57,10 @@ assert (root / "whats-new.html").read_bytes() == (root / "whats-new/index.html")
 for filename in ["launch.css", "interior.css"]:
     css = (root / filename).read_text()
     assert css.count("{") == css.count("}")
+for filename in ["privacy", "support"]:
+    assert (root / (filename + ".html")).read_bytes() == (root / filename / "index.html").read_bytes()
+assert 'src="/site.js" defer' in home and (root / "site.js").exists()
+assert home.count('class="tour-slide"') == home.count('class="tour-link"') == 9
 ET.parse(root / "sitemap.xml")
 ET.parse(root / "assets/favicon.svg")
 if errors:

@@ -13,3 +13,7 @@
 APP_STORE_COPY.md contains proposed listing copy and the screenshot brief. It is a review draft, not a record of changes published in App Store Connect.
 
 The homepage’s Planner image is bundled at assets/streaming-plan.png from the original 1320 × 2868 PNG export. The standalone preview embeds the same full-resolution image so it works without external image requests.
+
+The homepage app tour uses the nine uploaded App Store panels, exported at 660 × 1434 as JPEG into assets/tour/. When the App Store screenshots change, export the new set with the same file names and update the tour text and alt text in index.html.
+
+site.js adds the homepage interactions (the month buttons on the hero plan, the app tour, the Try the math sliders, section fade-ins). The page reads in full without it. Run `python3 validate_site.py` before merging.
