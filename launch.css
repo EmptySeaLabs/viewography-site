@@ -15,7 +15,7 @@
 .planner-demo{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);align-items:center;gap:48px;padding:48px;background:var(--navy);color:var(--white);border-radius:24px;scroll-margin-top:100px}
 .demo-copy{max-width:540px}
 .planner-demo .eyebrow{color:#ffad79}
-.demo-copy h3{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.04em;margin:16px 0 24px}
+.demo-copy h2{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.04em;margin:16px 0 24px}
 .demo-copy p{line-height:1.65}
 .demo-copy p+p{margin-top:14px}
 .demo-copy .demo-note{font-size:13px;color:#c5d0d3}
@@ -55,7 +55,7 @@
 
 .budget-demo{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px 64px;align-items:center;background:var(--white);border:1px solid var(--line);border-radius:24px;padding:48px}
 .budget-demo .eyebrow{color:var(--orange)}
-.budget-copy h3{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.04em;margin:16px 0 20px}
+.budget-copy h2{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.04em;margin:16px 0 20px}
 .budget-copy>p:not(.eyebrow):not(.budget-line){font-size:15px;color:var(--muted);max-width:440px}
 .budget-control{margin-top:30px;max-width:440px}
 .budget-control label{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:14px;font-weight:650}
@@ -136,3 +136,4 @@ h1,h2{word-spacing:.08em}
 .button-outline:hover span{transform:translateX(4px)}
 .faq-section{padding-bottom:80px}
 @media(max-width:760px){.beta-strip{padding-block:40px}.faq-section{padding-bottom:50px}}
+.budget-copy h2,.demo-copy h2{word-spacing:normal}
