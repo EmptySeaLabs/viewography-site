@@ -17,6 +17,7 @@
 .planner-demo .eyebrow{color:#ffad79}
 .demo-copy h3{font-size:clamp(32px,4vw,52px);line-height:1.08;letter-spacing:-.04em;margin:16px 0 24px}
 .demo-copy p{line-height:1.65}
+.demo-copy p+p{margin-top:14px}
 .demo-copy .demo-note{font-size:13px;color:#c5d0d3}
 .planner-demo .text-link{color:var(--white)}
 .planner-demo video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;background:#10191e;border:1px solid #41545c;border-radius:16px}
@@ -126,3 +127,4 @@ summary:hover{color:var(--orange)}
 .tour-slide figcaption strong{display:block;font-size:19px;letter-spacing:-.025em;line-height:1.25;margin-top:6px}
 .tour-slide figcaption span:last-child{display:block;font-size:13px;line-height:1.6;color:#bfccd1;margin-top:7px}
 }
+h1,h2{word-spacing:.08em}
