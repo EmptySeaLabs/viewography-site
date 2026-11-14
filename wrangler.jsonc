@@ -18,5 +18,12 @@
   ],
   // Rebuild "Streaming this week" once a day.
   "triggers": { "crons": ["23 10 * * *"] },
-  "observability": { "enabled": true }
+  "observability": { "enabled": true },
+  // Pull-request previews use their own test database, so preview sign-ups never mix with real ones.
+  // Preview secrets are set once with `npx wrangler preview base-config secret put <NAME>`.
+  "previews": {
+    "d1_databases": [
+      { "binding": "DB", "database_name": "viewography-site-preview", "database_id": "8cfb2ddc-16c4-4422-9382-2d94e283b2bb" }
+    ]
+  }
 }
