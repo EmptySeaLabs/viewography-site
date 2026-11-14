@@ -85,7 +85,8 @@ async function notify({ name, email, model, source }) {
 
 async function streamingWeek(request, env, ctx) {
   const cache = caches.default;
-  const cacheKey = new Request(new URL('/api/streaming-week', request.url).toString());
+  // Bump the version when the list's shape changes, so old cached copies are skipped.
+  const cacheKey = new Request(new URL('/api/streaming-week?v=2', request.url).toString());
   const cached = await cache.match(cacheKey);
   if (cached) return cached;
 
@@ -96,8 +97,8 @@ async function streamingWeek(request, env, ctx) {
   else if (age > WEEK_MAX_AGE_MS) ctx.waitUntil(refreshWeek(env)); // serve the old list, rebuild in the background
 
   const fresh = week && Date.now() - Date.parse(week.built) < WEEK_STALE_MS;
-  const body = fresh ? week : { movies: [], shows: [] };
-  const response = json(body, 200, { 'cache-control': 'public, max-age=3600' });
+  if (!fresh) return json({ movies: [], shows: [] }); // not cached, so the next visit tries again
+  const response = json(week, 200, { 'cache-control': 'public, max-age=3600' });
   ctx.waitUntil(cache.put(cacheKey, response.clone()));
   return response;
 }
