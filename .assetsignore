@@ -1,0 +1,10 @@
+.git
+.claude
+.DS_Store
+.gitignore
+.assetsignore
+wrangler.jsonc
+*.md
+*.py
+*.swift
+node_modules
