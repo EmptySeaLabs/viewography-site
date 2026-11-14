@@ -19,7 +19,7 @@ betaForm.addEventListener('submit', async (event) => {
     betaForm.reset();
   } catch (error) {
     betaStatus.textContent = error.message === 'check'
-      ? 'We couldn’t confirm you’re a person. Please wait a moment and try again, or email support@viewography.app.'
+      ? 'We couldn’t confirm you’re a person. If you see “Verify you are human” above, tick it and send again, or email support@viewography.app.'
       : 'Your request could not be sent. Please try again or email support@viewography.app. Your details are still in the form.';
   } finally {
     if (window.turnstile) window.turnstile.reset();
