@@ -1,5 +1,5 @@
-// Beta request form on /beta/. Requests are delivered to support@viewography.app through FormSubmit.
-const betaSubmissionEndpoint = 'https://formsubmit.co/ajax/support@viewography.app';
+// Beta request form on /beta/. The site's Worker (/api/beta) checks Cloudflare Turnstile, saves the request
+// on Cloudflare (one per email) and emails a copy to support@viewography.app.
 const betaForm = document.querySelector('#beta-form');
 const betaStatus = document.querySelector('#beta-status');
 
@@ -11,24 +11,18 @@ betaForm.addEventListener('submit', async (event) => {
   submit.disabled = true;
   submit.textContent = 'Sending…';
   betaStatus.textContent = '';
-  const data = new FormData();
-  data.set('name', betaForm.elements.name.value.trim());
-  data.set('email', betaForm.elements.email.value.trim());
-  data.set('Email for TestFlight', betaForm.elements.email.value.trim());
-  data.set('iPhone model', betaForm.elements.model.value.trim());
-  data.set('_honey', betaForm.elements._honey.value);
-  data.set('_subject', 'Viewography beta access request');
-  data.set('_url', location.href);
-  data.set('_template', 'table');
   try {
-    const response = await fetch(betaSubmissionEndpoint, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
-    const result = await response.json();
-    if (!response.ok || !(result.success === true || result.success === 'true')) throw new Error('Submission failed');
+    const response = await fetch('/api/beta', { method: 'POST', body: new FormData(betaForm), headers: { Accept: 'application/json' } });
+    const result = await response.json().catch(() => ({}));
+    if (!response.ok || result.ok !== true) throw new Error(result.error || 'Submission failed');
     betaStatus.textContent = 'Request sent. Thank you for helping make Viewography better! We’ll email your TestFlight invitation.';
     betaForm.reset();
-  } catch {
-    betaStatus.textContent = 'Your request could not be sent. Please try again or email support@viewography.app. Your details are still in the form.';
+  } catch (error) {
+    betaStatus.textContent = error.message === 'check'
+      ? 'We couldn’t confirm you’re a person. If you see “Verify you are human” above, tick it and send again, or email support@viewography.app.'
+      : 'Your request could not be sent. Please try again or email support@viewography.app. Your details are still in the form.';
   } finally {
+    if (window.turnstile) window.turnstile.reset();
     submit.disabled = false;
     submit.textContent = label;
   }

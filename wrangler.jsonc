@@ -1,11 +1,29 @@
 // Cloudflare Workers static assets for viewography.app (Nov 14, 2026).
 // Workers Builds deploys every push to main. Shared links (/i/…, /t/…) need the 404 page.
+// The Worker script runs only for /api/* (the beta form and "Streaming this week"); every other path is a plain file.
+// Secrets (never in git): TURNSTILE_SECRET, TMDB_TOKEN.
 {
   "name": "viewography-site",
+  "main": "src/worker.js",
   "compatibility_date": "2026-11-01",
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "auto-trailing-slash"
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "viewography-site", "database_id": "5694c74d-8ce8-482d-a51d-3d2c6eed7adc", "migrations_dir": "migrations" }
+  ],
+  // Rebuild "Streaming this week" once a day.
+  "triggers": { "crons": ["23 10 * * *"] },
+  "observability": { "enabled": true },
+  // Pull-request previews use their own test database, so preview sign-ups never mix with real ones.
+  // Preview secrets are set once with `npx wrangler preview base-config secret put <NAME>`.
+  "previews": {
+    "d1_databases": [
+      { "binding": "DB", "database_name": "viewography-site-preview", "database_id": "8cfb2ddc-16c4-4422-9382-2d94e283b2bb" }
+    ]
   }
 }

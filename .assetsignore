@@ -8,3 +8,6 @@ wrangler.jsonc
 *.py
 *.swift
 node_modules
+src
+migrations
+.wrangler

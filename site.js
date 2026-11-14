@@ -197,4 +197,45 @@
     arrows[0].disabled = true;
     $('.tour-controls', tour).hidden = false;
   }
+
+  // "Streaming this week": filled from /api/streaming-week (TMDB, cached by the site's Worker).
+  // The section stays hidden if there's nothing to show or the request fails.
+  const week = $('#streaming-week');
+  if (week && window.fetch) {
+    fetch('/api/streaming-week', { headers: { Accept: 'application/json' } })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data) => {
+        if (!data) return;
+        let shown = 0;
+        for (const group of $$('.week-group', week)) {
+          const kind = group.dataset.kind;
+          const items = Array.isArray(data[kind]) ? data[kind] : [];
+          const list = $('.week-list', group);
+          for (const item of items) {
+            const a = document.createElement('a');
+            a.href = `https://www.themoviedb.org/${kind === 'movies' ? 'movie' : 'tv'}/${encodeURIComponent(item.id)}`;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            const img = document.createElement('img');
+            img.src = item.poster;
+            img.alt = '';
+            img.loading = 'lazy';
+            img.width = 185;
+            img.height = 278;
+            const title = document.createElement('strong');
+            title.textContent = item.title;
+            const detail = document.createElement('span');
+            detail.textContent = kind === 'shows' && item.season > 1 ? `Season ${item.season} · ${item.service}` : item.service;
+            a.append(img, title, detail);
+            const li = document.createElement('li');
+            li.append(a);
+            list.append(li);
+          }
+          group.hidden = items.length === 0;
+          shown += items.length;
+        }
+        week.hidden = shown === 0;
+      })
+      .catch(() => {});
+  }
 })();
