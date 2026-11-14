@@ -137,3 +137,17 @@ h1,h2{word-spacing:.08em}
 .faq-section{padding-bottom:80px}
 @media(max-width:760px){.beta-strip{padding-block:40px}.faq-section{padding-bottom:50px}}
 .budget-copy h2,.demo-copy h2{word-spacing:normal}
+
+/* Streaming this week (filled by site.js from /api/streaming-week; hidden when empty) */
+.week-section{display:grid;grid-template-columns:1fr 2.2fr;gap:60px;align-items:start}
+.week-section[hidden],.week-group[hidden]{display:none}
+.week-section .eyebrow{color:var(--orange)}
+.week-groups{display:grid;gap:38px}
+.week-group h3{font-size:12px;font-weight:750;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+.week-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:18px 14px}
+.week-list a{display:block;color:inherit;text-decoration:none}
+.week-list img{display:block;width:100%;height:auto;aspect-ratio:2/3;object-fit:cover;border-radius:10px;background:var(--line)}
+.week-list strong{display:block;font-size:13px;font-weight:650;line-height:1.3;margin-top:8px}
+.week-list span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.week-list a:hover strong,.week-list a:focus-visible strong{text-decoration:underline}
+@media(max-width:760px){.week-section{grid-template-columns:1fr;gap:28px}.week-list{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 10px}.week-list strong{font-size:12px}}
