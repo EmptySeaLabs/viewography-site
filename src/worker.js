@@ -1,5 +1,6 @@
 // viewography.app Worker. Static files are served straight from assets; this script runs only for /api/*.
-//   POST /api/beta             beta request form: Turnstile check, saved to D1 (one row per email), emailed to support@
+//   POST /api/beta             beta request form: Turnstile check, saved to D1 (one row per email).
+//                              The page then emails the copy to support@ (FormSubmit limits requests from Cloudflare's servers).
 //   GET  /api/streaming-week   "Streaming this week" on the home page: new US streaming movies and new seasons, from TMDB
 // Secrets: TURNSTILE_SECRET, TMDB_TOKEN (a TMDB read access token).
 
@@ -59,26 +60,8 @@ async function beta(request, env, ctx, url) {
   ).bind(email, name, model, source, new Date().toISOString()).run();
 
   // A repeat email gets the same thank-you, without a second row or a second email to support@.
-  if (result.meta.changes === 1) ctx.waitUntil(notify({ name, email, model, source }));
-  return json({ ok: true });
-}
-
-// Mark still gets an email for each new request, as before, through FormSubmit to support@viewography.app.
-async function notify({ name, email, model, source }) {
-  const response = await fetch('https://formsubmit.co/ajax/support@viewography.app', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json', accept: 'application/json', origin: 'https://viewography.app', referer: 'https://viewography.app/beta/' },
-    body: JSON.stringify({
-      _subject: (source === 'preview' ? '[Preview test] ' : '') + 'Viewography beta access request',
-      _template: 'table',
-      name,
-      email,
-      'Email for TestFlight': email,
-      'iPhone model': model,
-      Saved: 'Cloudflare D1 (viewography-site, beta_requests)',
-    }),
-  }).catch((error) => ({ ok: false, status: String(error) }));
-  if (!response.ok) console.error('formsubmit failed', response.status);
+  // `notify` tells the page to send the support@ copy; FormSubmit answers Cloudflare's servers with 429 (Nov 14).
+  return json({ ok: true, notify: result.meta.changes === 1, preview: source === 'preview' });
 }
 
 // ---------- Streaming this week ----------
