@@ -1,0 +1,11 @@
+// Cloudflare Workers static assets for viewography.app (Nov 14, 2026).
+// Workers Builds deploys every push to main. Shared links (/i/…, /t/…) need the 404 page.
+{
+  "name": "viewography-site",
+  "compatibility_date": "2026-11-01",
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}
