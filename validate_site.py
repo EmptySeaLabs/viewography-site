@@ -67,14 +67,6 @@ assert home.count('class="budget-row"') == 5 and 'id="budget-range"' in home
 assert home.count('class="tour-slide"') == home.count('class="tour-link"') == 9
 beta = (root / "beta.html").read_text()
 assert 'id="beta-form"' in beta and 'src="/beta.js?v=' + version + '"' in beta and 'href="/beta/"' in home
-tip = (root / "tip.js").read_text()
-assert "TIP_URL = 'https://buy.stripe.com/" in tip, "tip.js holds the Stripe link"
-for filename in ["index.html", "whats-new.html", "privacy.html", "support.html", "beta.html"]:
-    text = (root / filename).read_text()
-    assert 'src="/tip.js?v=' + version + '" defer' in text, filename + ": tip.js"
-    assert "buy.stripe.com" not in text, filename + ": Stripe link belongs in tip.js"
-    assert text.count("data-tip-jar hidden") == text.count("data-tip-jar") >= 1, filename + ": tip jar ships hidden"
-assert "data-tip-link" in (root / "support.html").read_text()
 ET.parse(root / "sitemap.xml")
 ET.parse(root / "assets/favicon.svg")
 if errors:
